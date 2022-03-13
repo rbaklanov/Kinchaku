@@ -13,6 +13,7 @@
             <div><b>Country:</b> {{ $profile->country }}</div>
             <div><b>Nationality:</b> {{ $profile->nationality }}</div>
             <hr>
+            <a href="{{ route('home') }}" class="btn btn-secondary" role="button" aria-disabled="true">Update Full Profile</a>
             <a href="{{ route('update.gender') }}" class="btn btn-secondary" role="button" aria-disabled="true">Update Gender</a>
             <a href="{{ route('update.nationality') }}" class="btn btn-secondary" role="button" aria-disabled="true">Update Nationality</a>
         </div>
