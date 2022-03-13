@@ -6,14 +6,15 @@ use App\Models\Profile;
 
 class ProfileService
 {
-    public function getProfile(): array
+    public function getNewProfile(): array
     {
-        $profiles = json_decode(file_get_contents('https://randomuser.me/api/?results=20&gender=female&nat=de'),true);
+        $profiles = json_decode(file_get_contents('https://randomuser.me/api/?results=1'),true);
 
-        $profile = $profiles['results'][0];
+        return $profiles['results'][0];
+    }
 
-        return $profile;
-
+    public function saveProfile(array $profile): bool
+    {
         Profile::create([
             'title' => $profile['name']['title'],
             'first_name' => $profile['name']['first'],
@@ -25,7 +26,40 @@ class ProfileService
             'avatar' => $profile['picture']['large'],
             'birthdate' => $profile['dob']['date'],
             'country' => $profile['location']['country'],
-            'nationality' => $profile['nationality'],
+            'nationality' => $profile['nat'],
         ]);
+
+        return true;
+    }
+
+    public function getCurrentProfile()
+    {
+        return Profile::latest()->first();
+    }
+
+    public function updateGender(): Profile
+    {
+        $newProfile = $this->getNewProfile();
+
+        $profile = $this->getCurrentProfile();
+
+        $profile['gender'] = $newProfile['gender'];
+
+        $profile->save();
+
+        return $profile;
+    }
+
+    public function updateNationality(): Profile
+    {
+        $newProfile = $this->getNewProfile();
+
+        $profile = $this->getCurrentProfile();
+
+        $profile['nationality'] = $newProfile['nat'];
+
+        $profile->save();
+
+        return $profile;
     }
 }

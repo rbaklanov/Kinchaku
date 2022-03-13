@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->string('title');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('gander');
+            $table->string('gender');
             $table->text('address');
             $table->string('email');
             $table->string('phone');

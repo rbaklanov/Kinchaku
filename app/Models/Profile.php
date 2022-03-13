@@ -26,4 +26,9 @@ class Profile extends Model
     protected $casts = [
         'birthdate' => 'date',
     ];
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->title . ' ' . $this->first_name . ' ' . $this->last_name;
+    }
 }

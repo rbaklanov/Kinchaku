@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/update-gender', [HomeController::class, 'updateGender'])->name('update.gender');
+Route::get('/update-nationality', [HomeController::class, 'updateNationality'])->name('update.nationality');

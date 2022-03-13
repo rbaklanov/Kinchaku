@@ -9,10 +9,26 @@ class HomeController extends Controller
 {
     public function index(Request $request, ProfileService $profileService)
     {
-        $profile = $profileService->getProfile();
+        $profile = $profileService->getNewProfile();
 
-        //dd($profile);
+        $profileService->saveProfile($profile);
 
-        return view('home', ['profile' => $profile]);
+        $profile = $profileService->getCurrentProfile();
+
+        return view('home', compact('profile'));
+    }
+
+    public function updateGender(Request $request, ProfileService $profileService)
+    {
+        $profile = $profileService->updateGender();
+
+        return view('home', compact('profile'));
+    }
+
+    public function updateNationality(Request $request, ProfileService $profileService)
+    {
+        $profile = $profileService->updateNationality();
+
+        return view('home', compact('profile'));
     }
 }
