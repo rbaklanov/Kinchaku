@@ -5,9 +5,7 @@
  */
 
 require('./bootstrap');
-// const Vue = require("vue");
 
-// window.Vue = require('vue');
 import Vue from 'vue';
 
 /**
